@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Drafthome</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/drafts">Drafts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/courses">Courses</a></li>
+          </ul>
+        </li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+        <% if(!currentUser){ %>
+        <li><a href="/Login">Login </a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <% } %>
+        <%  if(currentUser) { %>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout" >Logout</a></li>
+        <% } %>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    
+</head>
+<body>
+
+
+<% if(success.length>0){ %>
+<div class="alert alert-success" role="alert">
+    
+    <p> <%= success %></p>
+    
+</div>    
+<% } %>
+
+<div class= "container">
+<div class="jumbotron">
+  <h1 style="text-align:center;">Welcome to Drafthome</h1>
+  
+  <button style="margin-left:30vw; background-color:#eee; color:inherit;" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Details
+</button>
+<div class="collapse" id="collapseExample" >
+  <p>Create your drafts to place all your application details at one place. Browse through drafts and courses to find suitable courses. Add courses created by others to your Drafts. Find courses perfect for you through evaluation </p>
+  </div>
+
+<div class ="row">
+<div style="margin-top: 2.5vw; margin-bottom:0.5vw; " class= "col-md-6 col-xs-12 col-lg-4 ">
+<a href="/drafts" class="thumbnail">
+      <img src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="error">
+    </a>        
+    <div class="caption">
+        <p style="text-align:center;"><small>View Public drafts that have been composed by other users</small>  </p>
+    </div>
+    
+</div>    
+
+<div style="margin-top: 2.5vw;" class= "col-md-6 col-xs-12 col-lg-4">
+    
+    <a href="/drafts" class="thumbnail">
+      <button style="display: inline-block;">try</button>
+      <img src="https://www.tvcc.edu/Dual-Credit/images/Books%202.jpg" alt="error">
+    </a>
+    <div class="caption">
+        <p style="text-align:center;"><small>View Courses that have been created by other Users</small>  </p>
+    </div>
+    
+</div>
+
+<div style="margin-top: 2.5vw; " class= "col-md-6 col-xs-12 col-lg-4">
+    <a href="/drafts" class="thumbnail">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNuwTIUlBVYGo9Mr5Z2HnZacMqTF5yffqmYyQVktDUgbF3c6dZ" alt="error">
+    </a>
+    <div class="caption">
+        <p style="text-align:center;"><small>Filter Courses that fit to your profile</small>  </p>
+    </div>
+    
+    
+</div>
+    
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>

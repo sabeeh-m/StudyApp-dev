@@ -1,0 +1,31 @@
+
+<table> 
+
+<tr>
+<th>Course Name </th>    
+<th>Department </th>
+<th>CGPA</th>
+<th>Language </th>
+<th>Deadline </th>
+<th>University </th>
+    
+    
+    
+</tr>
+<% draftcontent.forEach(function(content){ %>
+<tr>   
+<td> <%=content.course_name %> </td>
+<td> <%= content.course_department %> </td>
+<td> <%= content.course_cgpa %> </td>
+<td> <%= content.course_language %> </td>
+<td>  <%=content.course_deadline %></td>
+<td> <%=content.university_name %> </td>
+
+</tr>
+
+<% }) %>
+
+</table>
+
+    
+    

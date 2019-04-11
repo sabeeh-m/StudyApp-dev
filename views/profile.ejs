@@ -1,0 +1,60 @@
+<html>
+<head>
+    
+</head>
+
+<body>
+<div>
+    
+    <%=success %>
+    
+</div>
+<div>
+    
+    <%=error%>
+    
+</div>
+
+
+<h1>profile page testing</h1>
+
+<p> welcome <%= id %> </p>
+
+
+<h1> Your Drafts</h1>
+
+
+<% if(drafts!= null) {%>
+
+<a href="/addcourse"> Add course</a>
+
+<% drafts.forEach(function(draft){ %>
+    <div>
+    <h2> <a href="/drafts/view/<%=draft.id %>"> <%= draft.name %> </a>   </h2>
+    <p> <%= draft.created_at %> </p>
+    </div>
+    
+    
+    
+    
+<% }) %>
+<a href="/drafts/user">My Drafts</a>
+<a href="/courses/user">My Courses</a>
+<% }  else if(!drafts  ) { %>
+
+<p> You have no drafts at the moment</p>
+
+<% } %>
+
+<a href="/drafts/new"> Create Draft</a>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

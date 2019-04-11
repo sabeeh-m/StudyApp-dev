@@ -1,0 +1,179 @@
+<html style="height:100%; width:100%;">
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+</head>
+<body style="height: 100%;">
+
+
+    <div>
+        
+        <p><%= error %></p>
+        
+    </div>
+<div class="pull-left" style="margin: 7% 0; width:15%; height:100%; padding-left:1%; background-color:#C0C0C0; ">
+            
+            <h2>Search</h2>
+            <form id="searchform" method="get" action="/courses/results/" onsubmit="return checkvalues()">
+                <label for ="country" >Country</label>
+                <input id="country" name="course_country" type ="text" value="">
+                
+                <label for ="Department" >Department</label>
+                <input id="department" name="course_department" type ="text">
+                
+                <label for ="CGPA" >CGPA</label>
+                <input id="cgpa" name="course_cgpa" type ="text">
+                
+                
+                
+                <input type="submit">
+                
+                
+                
+            </form>
+            
+            
+            
+            
+            
+        </div>
+
+
+
+<div class="container" >
+
+        
+
+
+
+
+
+<div style="margin: 100px auto; width:60%">
+
+<table> 
+
+<tr>
+<th>Course Name </th>    
+<th>Department </th>
+<th>CGPA</th>
+<th>Language </th>
+<th>Deadline </th>
+<th>University </th>
+    
+    
+    
+</tr>
+<% courses.forEach(function(content){ %>
+<tr>   
+<td> <%=content.course_name %> </td>
+<td> <%= content.course_department %> </td>
+<td> <%= content.course_cgpa %> </td>
+<td> <%= content.course_language %> </td>
+<td>  <%=content.course_deadline %></td>
+<td> <%=content.university_name %> </td>
+<td>  <a class="btn btn-primary" href="/courses/<%= content.id %>">Full Information </a> </td>
+</tr>
+
+<% }) %>
+
+</table>
+</div>
+
+
+
+<div class="row" style="margin: 0 40%; width:50%; ">
+    
+    <% if(pagenumbers>1){ %>
+    <ul class="pagination">
+    <% var y=1; %>
+    <% if(currentpage>1){ %>
+    <% y=currentpage-1 %>
+    <li class="page-item"> <a href="<%=blob%>&page=<%=y %>">&laquo; </a>  </li>
+        
+    <% } %>
+    
+    <% for(var y; y<=pagenumbers; y++){ %>
+    <% if(currentpage ==y){ %>
+       <li class="page-item page-item active"><span><%= y %></span></li>
+       <% } else{  %>
+        <li class="page-item"><a href="<%=blob%>&page=<%= y %>"><%= y %></a></li>
+        <% } %>
+        <% if(parseInt(currentpage) +4 ==y){ %>
+        <% break } %>
+        <% } %>
+        
+        <% if(currentpage!= pagenumbers){ %>
+          <li class="page-item"> <a href="<%=blob%>&page=<%= Math.ceil(pagenumbers) %>">&raquo;</a> </li>
+        
+            <% } %>
+        </ul>
+        <% } %>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+        
+        
+    
+    <script>
+        
+        function checkvalues(){
+            
+            
+            
+            // inputid.removeattribute that is the way the certain 
+            var country= document.getElementById("country")
+            var department= document.getElementById("department")
+            var cgpa= document.getElementById("cgpa")
+            
+        
+            if(cgpa.value==""){
+                
+                
+                cgpa.removeAttribute("name");
+                
+            }
+            if(country.value==""){
+                
+                
+                country.removeAttribute("name");
+                
+            }
+            if(department.value==""){
+                
+                
+                department.removeAttribute("name");
+                
+            }
+            
+            return true;
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+    </script>
+        
+        
+        
+        
+     </body>
+     </html>
+    
+    

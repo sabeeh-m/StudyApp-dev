@@ -1,0 +1,225 @@
+<html style="height:100%; width:100%;">
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+</head>
+<body style="height: 100%;">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Drafthome</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/drafts">Drafts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/courses">Courses</a></li>
+          </ul>
+        </li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+        <% if(!currentUser){ %>
+        <li><a href="/Login">Login </a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        <% } %>
+        <%  if(currentUser) { %>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout" >Logout</a></li>
+        <% } %>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<% if(success.length>0){ %>
+<div class="alert alert-success" role="alert">
+    
+    <p> <%= success %></p>
+    
+</div>    
+<% } %>
+<% if(error.length>0){ %>
+<div class="alert alert-error" role="alert">
+    
+    <p> <%= success %></p>
+    
+</div>    
+<% } %>
+
+<div class="row">    
+
+<div class="col-lg-2 col-sm-1" style=" width:15%; margin-left:2vw; padding-left:1%; margin-top:8vw; ">
+            
+            
+            <form  method="get" action="/courses/results/" onsubmit="return checkvalues()">
+                <div class="form-group">
+                <label for ="country" >Country</label>
+                <input id="country" name="course_country" type ="text" value="">
+                </div>
+                <div class="form-group">
+                <label for ="Department" >Department</label>
+                <input id="department" name="course_department" type ="text">
+                </div>
+                <div class="form-group">
+                <label for ="CGPA" >CGPA</label>
+                <input id="cgpa" name="course_cgpa" type ="text">
+                </div>
+                
+                <div class="form-group">
+                <input type="submit" value="search">
+                </div>
+                
+                
+            </form>
+            
+            
+            
+            
+            
+        </div>
+
+
+
+
+
+        
+
+
+
+
+<div class="container">
+<div class="col-lg-10 col-md-10 col-sm-11"  style="margin-left: 1vw; margin-top: 8vw;  ">
+
+
+<% courses.forEach(function(content){ %>
+<div class="card">
+ 
+  <div style="border: 2px transparent #e7e7e7; border-radius:4px; margin-bottom:1vw;" class="card-body">
+    <h2 class="card-title"><%= content.course_name %></h2>
+    <h3 class="card-text">Field: <%= content.course_department %> <span class="pull-right"> Language: <%= content.course_language %> </span> </h3>
+    <p class="card-text">CGPA: <%= content.course_cgpa %>  University:  <%=content.university_name %>    </p>
+    <a href="/courses/<%= content.id %>" class="btn btn-primary">Details</a>
+    <a class="btn btn-primary" href="/courses/<%= content.id %>/addtodraft">Add to your Draft </a>
+  </div>
+  <hr style="opacity:0.25 background-color:#e7e7e7;" > </hr>
+</div>
+
+
+
+
+   
+
+
+<% }) %>
+
+</table>
+ <% if(pagenumbers>1){ %>
+    <ul class="pagination">
+    <% var y=1; %>
+    <% if(currentpage>1){ %>
+    <% y=currentpage-1 %>
+    <li class="page-item"> <a href="/courses/?&page=<%=y %>">&laquo; </a>  </li>
+        
+    <% } %>
+    
+    <% for(var y; y<=pagenumbers; y++){ %>
+    <% if(currentpage ==y){ %>
+       <li class="page-item page-item active"><span><%= y %></span></li>
+       <% } else{  %>
+        <li class="page-item"><a href="/courses/?&page=<%= y %>"><%= y %></a></li>
+        <% } %>
+        <% if(parseInt(currentpage) +4 ==y){ %>
+        <% break } %>
+        <% } %>
+        
+        <% if(currentpage!= pagenumbers){ %>
+          <li class="page-item"> <a href="/courses/?page=<%= Math.ceil(pagenumbers) %>">&raquo;</a> </li>
+        
+            <% } %>
+        </ul>
+        <% } %>
+   
+
+</div>
+
+</div>
+
+        </div>
+    
+    <script>
+        
+        function checkvalues(){
+            
+            
+            
+            // inputid.removeattribute that is the way the certain 
+            var country= document.getElementById("country")
+            var department= document.getElementById("department")
+            var cgpa= document.getElementById("cgpa")
+            
+            if(cgpa.value!="")
+            cgpa.addEventListener("input",function(event){
+                
+                
+                cgpa.value=cgpa.value
+                
+                
+                
+            })
+            
+            if(cgpa.value==""){
+                
+                
+                cgpa.removeAttribute("name");
+                
+            } 
+            if(country.value==""){
+                
+                
+                country.removeAttribute("name");
+                
+            }
+            if(department.value==""){
+                
+                
+                department.removeAttribute("name");
+                
+            }
+            
+            return true;
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+    </script>
+    
+        
+      
+        
+     </body>
+     </html>
+    
+    

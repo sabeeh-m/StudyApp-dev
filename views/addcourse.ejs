@@ -1,0 +1,78 @@
+
+<div  style=" width:50%; margin: 20px auto;" >
+<form action="/course" method="post">
+    <div>
+    <label> Draft: </label>
+    <select name="draftname">
+        <% drafts.forEach(function(draft){ %>
+        <option value= "<%=draft.id %>"> <%=draft.name%></option>
+        <% }) %>
+     </select>
+    
+    </div>
+    <div>
+    <input type="text" name="coursename" placeholder="Enter Course Name">
+    </div>
+    <div>
+    <input type="text" name="coursedepartment" placeholder="Enter Course Department">
+    </div>
+    <div>
+    <input type="text" name="universityname" placeholder="Enter University Name">
+    </div>
+    <div>
+    <input type="text" name="courselanguage" placeholder="Enter Course Language">
+    </div>
+    <div>
+    <input type="text" name="courseintake" placeholder="Enter Course Intake">
+    </div>
+    <div>
+    <input type="text" name="coursecity" placeholder="Enter City of the Respective University ">
+    </div>
+    <div>
+    <input type="text" name="coursecountry" placeholder="Enter Country of the Respective University">
+    </div>
+    <div>
+    <input type="date" name="coursedeadline" placeholder="Enter Course Deadline">
+</div>
+
+<div>
+    <label>Gre required</label>
+    <select name="gre">
+        
+        <option value="yes">yes</option>
+            <option value="No">no</option>
+        </select>
+        </div>
+        <div>
+        <label>Language Test</label>
+    <select name="languagetest">
+        <option value="Ielts">ielts</option>
+        <option value="Toefl">toefl </option>
+    </select>
+</div>
+<div>
+        <input type="number" name="languagescore" placeholder="Enter selected language score requirement">
+</div>
+        <div>
+        <input type="number" name="cgpa" min="1" max="4" placeholder="Enter required cgpa to one decimal place, write 0 for none">
+        </div>
+        <div>
+        <input type="text" name="percentage" placeholder="Enter required percentage, write 0 for none">
+        </div>
+        <div>
+        <input type="text" name="additionalnotes" placeholder="Additional notes">
+        </div>
+        <div>
+            <label for="true"> Public </label>
+            <input type="radio" id="true" name="privacy" value="true">
+            
+                        <label for="false"> Private </label>
+            <input type="radio" id="false" name="privacy" value="false">
+        </div>
+        
+        <div>
+            
+            <input type="submit">
+        </div>
+        </form>
+        </div>

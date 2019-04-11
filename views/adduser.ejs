@@ -1,0 +1,58 @@
+<div>
+<%= error %>
+</div>
+<div  id="signupform" style=" width:50%; margin: 20px auto;" >
+<form  action="/signup" method="post" onsubmit="return validateform()" >
+    <div>
+    <input type="text" id="firstname" name="first_name" placeholder="Enter First Name" required>
+    </div>
+    <div>
+    <input type="text" id="lastname" name="last_name" placeholder="Enter Last Name" required>
+    </div>
+    <div>
+    <input type="email" id="email" name="email" placeholder="Enter email" required>
+    </div>
+    <div>
+    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+    </div>
+    <div>
+    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+    </div>    
+    <div id="passmsg" style="display:none;">
+        <p> Passwords do not match</p>
+        
+    </div>
+            <div>
+            
+            <input id="submitbutton" type="submit" >
+        </div>
+        </form>
+        </div>
+        
+        
+        
+        <script>
+        
+        var firstname= document.getElementById("firstname");
+        var lastname=  document.getElementById("lastname");
+        var email=     document.getElementById("email");
+        var password=  document.getElementById("password");
+        var confirmpassword=  document.getElementById("confirmpassword");
+        var submitbutton= document.getElementById("submitbutton");
+        var signupform= document.getElementById("signupform");
+        var passmsg= document.getElementById("passmsg");
+        function validateform(){
+            
+        if (password.value != confirmpassword.value ){
+            password.value="";
+            confirmpassword.value=""
+            passmsg.style.display="block"
+            return false;
+            
+        }    else return true;
+                    
+            
+        }
+        
+        
+        </script>

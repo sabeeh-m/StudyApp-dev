@@ -1,0 +1,15 @@
+<h1> Add course to your draft</h1>
+
+
+<div>
+    <form method="POST" action="/courses/<%=courseid%>">
+<select name="draftname">
+        <% drafts.forEach(function(draft){ %>
+        <option value= "<%=draft.id %>"> <%=draft.name%></option>
+        <% }) %>
+     </select>
+     
+     <input  type ="submit">
+     </form>
+     
+</div>     

@@ -1,0 +1,129 @@
+<html style="height:100%; width:100%;">
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+</head>
+<body style="height: 100%;">
+    <div>
+        
+        <p><%= error %></p>
+        
+    </div>
+
+
+
+<div class="container" >
+
+<div id="formmain">
+<form >
+    
+    <input id="searchbox" style="width:20%; line-height:2.0;"  name="searchterm" type="text" placeholder="Enter Course">
+    <div id= "suggestions" style="display:none; border-right: 1px solid black;  border-left:1px solid black; border-bottom:1px solid black; width:20%; "> </div>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div style="margin: 100px auto; width:60%">
+<table> 
+<tr>
+<th>Course Name </th>    
+<th>Department </th>
+<th>CGPA</th>
+<th>Language </th>
+<th>Deadline </th>
+<th>University </th>
+    
+    
+    
+</tr>
+<% courses.forEach(function(content){ %>
+<tr>   
+<td> <%=content.course_name %> </td>
+<td> <%= content.course_department %> </td>
+<td> <%= content.course_cgpa %> </td>
+<td> <%= content.course_language %> </td>
+<td>  <%=content.course_deadline %></td>
+<td> <%=content.university_name %> </td>
+<td>  <a class="btn btn-primary btn-xs" href="/courses/<%= content.id %>">Full Information </a> </td>
+<td>  <a class="btn btn-primary btn-xs" href="/courses/<%= content.id %>/delete">Delete</a> </td>
+<td>  <a class="btn btn-primary btn-xs" href="/courses/<%= content.id %>/edit">Edit</a> </td>
+</tr>
+
+<% }) %>
+
+</table>
+</div>
+
+
+
+<div class="row" style="margin: 0 40%; width:50%; ">
+    
+    <% if(pagenumbers>1){ %>
+    <ul class="pagination">
+    <% var y=1; %>
+    <% if(currentpage>1){ %>
+    <% y=currentpage-1 %>
+    <li class="page-item"> <a href="/courses/user/?&page=<%=y %>">&laquo; </a>  </li>
+        
+    <% } %>
+    
+    <% for(var y; y<=pagenumbers; y++){ %>
+    <% if(currentpage ==y){ %>
+       <li class="page-item page-item active"><span><%= y %></span></li>
+       <% } else{  %>
+        <li class="page-item"><a href="/courses/user/?&page=<%= y %>"><%= y %></a></li>
+        <% } %>
+        <% if(parseInt(currentpage) +4 ==y){ %>
+        <% break } %>
+        <% } %>
+        
+        <% if(currentpage!= pagenumbers){ %>
+          <li class="page-item"> <a href="/courses/user/?page=<%= Math.ceil(pagenumbers) %>">&raquo;</a> </li>
+        
+            <% } %>
+        </ul>
+        <% } %>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+        
+        
+    
+    
+        
+    
+        
+<script
+		  src="https://code.jquery.com/jquery-3.1.1.min.js"
+		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		  crossorigin="anonymous"></script>
+	  <!-- Bootstrap CDN -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>        
+  
+		<!-- ajax js file -->
+		<script src="/ajax.js"></script>
+        
+        
+     </body>
+     </html>
+    
+    

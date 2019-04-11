@@ -1,0 +1,63 @@
+<!--- add option add a specific course to a user draft... add a table to show the draft courses nicely,add a link to the creator of the draft add comment/like for the draft -->
+
+<!doctype HTML>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+</head>
+<body>
+<div class="container">
+<h1>Drafts</h1>
+
+<% drafts.forEach(function(draft){ %>
+
+<h1> <a href="/drafts/view/<%= draft.id %>"> <%=draft.name %> </a> </h1>
+
+<% }) %>
+
+
+<div class="row" style="margin: auto auto;">
+    
+    <% if(pagenumbers>1){ %>
+    <ul class="pagination">
+    <% var y=1; %>
+    <% if(currentpage>1){ %>
+    <% y=currentpage-1 %>
+    <li class="page-item"> <a href="/drafts/view/?page=<%=y %>">&laquo; </a>  </li>
+        
+    <% } %>
+    
+    <% for(var y; y<=pagenumbers; y++){ %>
+    <% if(currentpage ==y){ %>
+       <li class="page-item page-item active"><span><%= y %></span></li>
+       <% } else{  %>
+        <li class="page-item"><a href="/drafts/view/?page=<%= y %>"><%= y %></a></li>
+        <% } %>
+        <% if(parseInt(currentpage) +4 ==y){ %>
+        <% break } %>
+        <% } %>
+        
+        <% if(currentpage!= pagenumbers){ %>
+          <li class="page-item"> <a href="/drafts/view/?page=<%= Math.ceil(pagenumbers) %>">&raquo;</a> </li>
+        
+            <% } %>
+        </ul>
+        <% } %>
+        </div>
+        
+        </div>
+        
+        
+      </body>  
+        
+    </html>
+    
+    
+
+
+
+
+
